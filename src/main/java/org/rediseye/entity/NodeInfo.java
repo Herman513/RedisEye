@@ -1,6 +1,7 @@
 package org.rediseye.entity;
 
-import java.sql.Timestamp;
+
+import java.util.Date;
 
 /**
  * Date: 2017/1/16 上午11:49
@@ -10,7 +11,7 @@ public class NodeInfo {
     private Long id;
     private String nodeId; //节点Id
     private String info; //节点状态
-    private Timestamp time;//记录时间
+    private Date time;//记录时间
 
     public Long getId() {
         return id;
@@ -36,11 +37,17 @@ public class NodeInfo {
         this.info = info;
     }
 
-    public Timestamp getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public NodeInfo(String nodeId, String info, Date time) {
+        this.nodeId = nodeId;
+        this.info = info;
         this.time = time;
     }
 }

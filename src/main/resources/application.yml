@@ -26,3 +26,9 @@ mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   configLocation: classpath:/mybatis-config.xml
   typeAliasesPackage: org.rediseye.entity
+
+logging:
+  level: info
+  # ERROR, WARN, INFO, DEBUG or TRACE
+  #logging.path=:/home/jar/monitor/log/
+

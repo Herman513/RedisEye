@@ -5,9 +5,9 @@
 <mapper namespace="org.rediseye.dao.NodeInfoDao">
     <insert id="saveNodeInfos" parameterType="org.rediseye.entity.NodeInfo">
         INSERT INTO t_node_info
-        (node_id,info,[time])
+        (node_id,info,time)
         VALUES
-        <foreach collection="nodeInfoList" item="item" separator=",">
+        <foreach collection="nodeInfos" item="item" separator=",">
             (
             #{item.nodeId},
             #{item.info},
@@ -23,5 +23,10 @@
         ORDER BY time desc
         LIMIT ${count}
     </select>
+    <delete id="deleteNodeInfos" parameterType="java.util.Date">
+        delete
+        from t_node_info
+        where  <![CDATA[ time < #{date}]]>
+    </delete>
 
 </mapper>

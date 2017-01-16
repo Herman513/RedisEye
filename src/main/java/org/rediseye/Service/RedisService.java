@@ -23,52 +23,50 @@ public class RedisService {
     @Autowired
     JedisConnectionFactory jedisConnectionFactory;
 
-    public HashMap<String,Object> getInfo() {
+    public HashMap<String, Object> getInfo() {
         RedisClusterConnection conn = jedisConnectionFactory.getClusterConnection();
         Iterable<RedisClusterNode> nodes = conn.clusterGetNodes();
-        long keysCount=conn.dbSize();
-        HashMap<String,Object> infos=new HashMap<>();
+        long keysCount = conn.dbSize();
+        HashMap<String, Object> infos = new HashMap<>();
         ClusterInfo clusterInfo = conn.clusterGetClusterInfo();
-        ClusterState clusterState=new ClusterState(clusterInfo);
+        ClusterState clusterState = new ClusterState(clusterInfo);
         clusterState.setKeysCount(keysCount);
         ArrayList<Properties> nodesInfo = new ArrayList<>();
         nodes.forEach(node -> {
             Properties info;
             if (node.isConnected()) {
-                 info = conn.info(node,"memory");
-            }else{
-                 info= new Properties();
+                info = conn.info(node, "memory");
+            } else {
+                info = new Properties();
             }
             info.put("server", node.getHost() + ":" + node.getPort());
-            info.put("role",node.getType().name());
-            info.put("state",node.getLinkState().name());
-            info.put("id",node.getId());
+            info.put("role", node.getType().name());
+            info.put("state", node.getLinkState().name());
+            info.put("id", node.getId());
             nodesInfo.add(info);
         });
-        infos.put("clusterInfo",clusterState);
-        infos.put("nodesInfo",nodesInfo);
+        infos.put("clusterInfo", clusterState);
+        infos.put("nodesInfo", nodesInfo);
         infos.put("time", LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
         return infos;
     }
 
-    public Long deleteKey(String key){
+    public Long deleteKey(String key) {
         RedisClusterConnection conn = jedisConnectionFactory.getClusterConnection();
         return conn.del(key.getBytes());
     }
 
-    public void getNodeInfoById(String id){
+    public HashMap<String, Properties> getNodeInfos() {
         RedisClusterConnection conn = jedisConnectionFactory.getClusterConnection();
         Iterable<RedisClusterNode> nodes = conn.clusterGetNodes();
-        RedisClusterNode node=null;
-        for(RedisClusterNode n :nodes){
-            if(n.getId().equals(id)) {
-                node = n;
-                break;
-            }
+        RedisClusterNode node = null;
+        Properties info;
+        HashMap<String, Properties> infos = new HashMap<>();
+        for (RedisClusterNode n : nodes) {
+            info = conn.info(n, "memory");
+            infos.put(n.getId(), info);
         }
-        Properties info=null;
-        if(node!=null)
-            info=conn.info(node);
-
+        return infos;
     }
+
 }

@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.rediseye.entity.NodeInfo;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,5 +14,6 @@ import java.util.List;
 @Repository
 public interface NodeInfoDao {
     List<NodeInfo> getNodeInfoById(@Param("nodeId") String nodeId, @Param("count") long count);
-    int saveNodeInfo(NodeInfo nodeInfo);
+    int saveNodeInfos(@Param("nodeInfos")List<NodeInfo> nodeInfos);
+    int deleteNodeInfos(Date date);
 }
