@@ -1,0 +1,23 @@
+server:
+  port: 9999
+#  redis cluster 配置
+spring:
+  redis:
+    pool:
+      max-idle: 100
+  thymeleaf:
+    cache: false
+  mail:
+    host: smtp.exmail.qq.com
+    username: xxxx
+    password: xxxx
+    port: 465
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  profiles:
+    active: test

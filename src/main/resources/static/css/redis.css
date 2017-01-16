@@ -1,0 +1,21 @@
+.switch-box {
+    height:20px;
+    text-align: right;
+    padding-right:20px;
+}
+.state{
+    /*font-size: 18px;*/
+    font-weight: bold;
+}
+.ok{
+    color: #00ae66;
+}
+.fail{
+    color: red;
+}
+.CONNECTED{
+    color: #00ae66;
+}
+.DISCONNECTED{
+    color: red;
+}

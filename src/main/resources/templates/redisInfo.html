@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Redis Eye</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css"/>
+    <link rel="stylesheet" href="/css/redis.css"/>
+
+</head>
+<body>
+<div id="app">
+    <el-row>
+        <el-col :span="24">
+            <div class="grid-content bg-purple-dark">
+                <el-menu theme="dark" default-active="1" class="el-menu-demo" mode="horizontal">
+                    <el-menu-item index="1">Redis集群监控</el-menu-item>
+                    <el-menu-item index="2">Redis命令操作</el-menu-item>
+                </el-menu>
+            </div>
+        </el-col>
+    </el-row>
+    <el-row>
+        <el-col :span="20" :offset="2">
+            <div class="grid-content bg-purple-light">
+                <p align="center">集群状态</p>
+                <el-table
+                        :data="clusterData"
+                        style="width: 100%">
+                    <el-table-column
+                            prop="clusterSize"
+                            label="clusterSize">
+                    </el-table-column>
+                    <el-table-column
+                            prop="slotsOk"
+                            label="slotsOk">
+                    </el-table-column>
+                    <el-table-column
+                            prop="slotsAssigned"
+                            label="slotsAssigned">
+                    </el-table-column>
+                    <el-table-column
+                            prop="knownNodes"
+                            label="knownNodes">
+                    </el-table-column>
+                    <el-table-column
+                            prop="slotsPfail"
+                            label="slotsPfail">
+                    </el-table-column>
+                    <el-table-column
+                            prop="slotsFail"
+                            label="slotsFail">
+                    </el-table-column>
+                    <el-table-column
+                            prop="keysCount"
+                            label="keys">
+                    </el-table-column>
+                    <el-table-column
+                            label="state">
+                        <template scope="scope">
+                            <span :class="scope.row.state" class="state">{{scope.row.state}}</span>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+            <br/><br/>
+            <div class="grid-content bg-purple-light">
+                <p align="center">节点状态</p>
+                <el-table
+                        :data="nodeData"
+                        style="width: 100%">
+                    <el-table-column
+                            prop="server"
+                            label="节点"
+                    >
+                    </el-table-column>
+                    <el-table-column
+                            prop="used_memory_human"
+                            label="used_memory">
+                    </el-table-column>
+                    <el-table-column
+                            prop="used_memory_rss_human"
+                            label="rss">
+                    </el-table-column>
+                    <el-table-column
+                            prop="used_memory_peak_human"
+                            label="peak">
+                    </el-table-column>
+                    <!--<el-table-column-->
+                            <!--prop="mem_fragmentation_ratio"-->
+                            <!--label="fragmentation_ratio">-->
+                    <!--</el-table-column>-->
+                    <el-table-column
+                            prop="role"
+                            label="role">
+                    </el-table-column>
+                    <el-table-column
+                            label="连接状态">
+                        <template scope="scope">
+                            <span :class="scope.row.state" class="state">{{scope.row.state}}</span>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+        </el-col>
+    </el-row>
+</div>
+</body>
+<!-- 先引入 Vue -->
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="/js/redis.js"></script>
+</html>
