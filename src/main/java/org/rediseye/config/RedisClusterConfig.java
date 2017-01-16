@@ -6,7 +6,7 @@ package org.rediseye.config;
  */
 //@Configuration
 public class RedisClusterConfig {
-//    @Value("${spring.redis.cluster.nodes}")
+//    @Value("${spring.entity.cluster.nodes}")
 //    private String clusterNodes;
 //
 //    @Bean("redisClusterConfiguration")

@@ -1,10 +1,9 @@
 package org.rediseye.controller;
 
-import org.rediseye.Service.RedisInfoService;
+import org.rediseye.Service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
@@ -13,18 +12,25 @@ import java.util.HashMap;
  * Usage:
  */
 @Controller
-public class RedisInfoController {
+public class RedisController {
     @Autowired
-    private RedisInfoService redisInfoService;
+    private RedisService redisService;
 
     @RequestMapping("/infos")
     @ResponseBody
     public HashMap<String, Object> getInfos() {
-        return redisInfoService.getInfo();
+        return redisService.getInfo();
     }
 
     @RequestMapping("/redisInfo")
     public String redisInfo() {
         return "/redisInfo";
     }
+
+    @RequestMapping(value = "/redis/keys", method = RequestMethod.DELETE)
+    @ResponseBody
+    public String deleteKey(@PathVariable(name = "key")String key) {
+        return "ok";
+    }
+
 }

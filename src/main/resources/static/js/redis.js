@@ -18,6 +18,13 @@ var vue=new Vue({
                 this.nodeData=ret.nodesInfo;
                 }.bind(this)
             );
+        },
+        getNodeDetail: function (id) {
+            $.getJSON('/nodes?id='+id, function (ret) {
+                    //TODO
+                console.log(id);
+                }
+            );
         }
     }
 });

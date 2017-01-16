@@ -1,4 +1,4 @@
-package org.rediseye.redis;
+package org.rediseye.entity;
 
 import org.springframework.data.redis.connection.ClusterInfo;
 

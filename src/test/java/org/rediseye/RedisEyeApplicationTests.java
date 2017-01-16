@@ -1,6 +1,6 @@
 package org.rediseye;
 
-import org.rediseye.Service.RedisInfoService;
+import org.rediseye.Service.RedisService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class RedisEyeApplicationTests {
     @Autowired
     RedisTemplate<String, String> redisTemplate;
     @Autowired
-    private RedisInfoService redisInfoService;
+    private RedisService redisService;
     @Autowired
     JedisConnectionFactory jedisConnectionFactory;
     @Autowired

@@ -21,7 +21,7 @@
     <el-row>
         <el-col :span="20" :offset="2">
             <div class="grid-content bg-purple-light">
-                <p align="center">集群状态</p>
+                <p align="center">Cluster State</p>
                 <el-table
                         :data="clusterData"
                         style="width: 100%">
@@ -63,13 +63,13 @@
             </div>
             <br/><br/>
             <div class="grid-content bg-purple-light">
-                <p align="center">节点状态</p>
+                <p align="center">Nodes State</p>
                 <el-table
                         :data="nodeData"
                         style="width: 100%">
                     <el-table-column
                             prop="server"
-                            label="节点"
+                            label="node"
                     >
                     </el-table-column>
                     <el-table-column
@@ -85,17 +85,22 @@
                             label="peak">
                     </el-table-column>
                     <!--<el-table-column-->
-                            <!--prop="mem_fragmentation_ratio"-->
-                            <!--label="fragmentation_ratio">-->
+                    <!--prop="mem_fragmentation_ratio"-->
+                    <!--label="fragmentation_ratio">-->
                     <!--</el-table-column>-->
                     <el-table-column
                             prop="role"
                             label="role">
                     </el-table-column>
                     <el-table-column
-                            label="连接状态">
+                            label="link state">
                         <template scope="scope">
                             <span :class="scope.row.state" class="state">{{scope.row.state}}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="detail">
+                        <template scope="scope">
+                            <el-button size="small" v-on:click="getNodeDetail(scope.row.id)">Show</el-button>
                         </template>
                     </el-table-column>
                 </el-table>

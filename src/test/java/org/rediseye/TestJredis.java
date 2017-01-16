@@ -1,6 +1,6 @@
 package org.rediseye;
 
-import org.rediseye.redis.Server;
+import org.rediseye.entity.Server;
 import org.rediseye.util.StringUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

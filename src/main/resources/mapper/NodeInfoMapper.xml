@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.rediseye.dao.NodeInfoDao">
+    <insert id="saveNodeInfos" parameterType="org.rediseye.entity.NodeInfo">
+        INSERT INTO t_node_info
+        (node_id,info,[time])
+        VALUES
+        <foreach collection="nodeInfoList" item="item" separator=",">
+            (
+            #{item.nodeId},
+            #{item.info},
+            #{item.time}
+            )
+        </foreach>
+    </insert>
+
+    <select id="getNodeInfoById" parameterType="String" resultType="org.rediseye.entity.NodeInfo">
+        SELECT info,time
+        FROM t_node_info
+        WHERE node_id=#{nodeId}
+        ORDER BY time desc
+        LIMIT ${count}
+    </select>
+
+</mapper>

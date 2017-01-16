@@ -8,3 +8,7 @@ spring:
         - 10.8.1.132:7003
         - 10.8.1.132:7004
         - 10.8.1.132:7005
+  datasource:
+    url: jdbc:mysql://localhost/redis_eye
+    username: root
+    password: root

@@ -1,6 +1,6 @@
 server:
   port: 9999
-#  redis cluster 配置
+#  entity cluster 配置
 spring:
   redis:
     pool:
@@ -21,3 +21,8 @@ spring:
             required: true
   profiles:
     active: test
+#mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configLocation: classpath:/mybatis-config.xml
+  typeAliasesPackage: org.rediseye.entity
