@@ -4,9 +4,15 @@ package org.rediseye.config;
  * Date: 2016/12/26 下午5:51
  * Usage:
  */
-//@Configuration
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisClusterConnection;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+
+@Configuration
 public class RedisClusterConfig {
-//    @Value("${spring.entity.cluster.nodes}")
+    //    @Value("${spring.entity.cluster.nodes}")
 //    private String clusterNodes;
 //
 //    @Bean("redisClusterConfiguration")
@@ -32,5 +38,9 @@ public class RedisClusterConfig {
 //        redisTemplate.setConnectionFactory(jedisConnectionFactory);
 //        return redisTemplate;
 //    }
+    @Bean("redisClusterConnection")
+    public RedisClusterConnection redisClusterConnection(JedisConnectionFactory jedisConnectionFactory) {
+        return jedisConnectionFactory.getClusterConnection();
+    }
 
 }

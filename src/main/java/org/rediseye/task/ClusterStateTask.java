@@ -22,6 +22,7 @@ public class ClusterStateTask {
     private NodeInfoService nodeInfoService;
     @Autowired
     private RedisService redisService;
+
     @Scheduled(cron="0/10 * * * * *")
     public void saveClusterInfo(){
         HashMap<String, Properties> infos= redisService.getNodeInfos();

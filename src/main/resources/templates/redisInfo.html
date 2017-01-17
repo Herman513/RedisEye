@@ -4,7 +4,8 @@
     <title>Redis Eye</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css"/>
     <link rel="stylesheet" href="/css/redis.css"/>
-
+    <!-- 引入 ECharts 文件 -->
+    <script src="/js/echarts.common.min.js"></script>
 </head>
 <body>
 <div id="app">
@@ -62,7 +63,7 @@
                 </el-table>
             </div>
             <br/><br/>
-            <div class="grid-content bg-purple-light">
+            <div class="grid-content bg-purple-light" v-show="nodeShow">
                 <p align="center">Nodes State</p>
                 <el-table
                         :data="nodeData"
@@ -104,6 +105,15 @@
                         </template>
                     </el-table-column>
                 </el-table>
+            </div>
+
+        </el-col>
+    </el-row>
+    <el-row>
+        <el-col :span="20" :offset="2">
+            <div class="node-detail" v-show="detailShow">
+                <p align="center">Nodes Detail</p>
+                <div id="detail" style="width: 900px;height:500px;"></div>
             </div>
         </el-col>
     </el-row>

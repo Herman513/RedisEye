@@ -21,6 +21,9 @@ spring:
             required: true
   profiles:
     active: test
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
 #mybatis
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
@@ -31,4 +34,5 @@ logging:
   level: info
   # ERROR, WARN, INFO, DEBUG or TRACE
   #logging.path=:/home/jar/monitor/log/
+
 

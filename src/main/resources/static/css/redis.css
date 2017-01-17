@@ -19,3 +19,10 @@
 .DISCONNECTED{
     color: red;
 }
+
+.node-detail{
+    display: flex;
+    justify-content: center;
+    flex-direction:column;
+    align-items:center;
+}

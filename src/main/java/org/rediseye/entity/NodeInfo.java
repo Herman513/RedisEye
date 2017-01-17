@@ -50,4 +50,7 @@ public class NodeInfo {
         this.info = info;
         this.time = time;
     }
+
+    public NodeInfo() {
+    }
 }

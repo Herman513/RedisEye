@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.ClusterInfo;
 import org.springframework.data.redis.connection.RedisClusterConnection;
 import org.springframework.data.redis.connection.RedisClusterNode;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
@@ -21,10 +20,10 @@ import java.util.Properties;
 @Service
 public class RedisService {
     @Autowired
-    JedisConnectionFactory jedisConnectionFactory;
+    private RedisClusterConnection redisClusterConnection;
 
     public HashMap<String, Object> getInfo() {
-        RedisClusterConnection conn = jedisConnectionFactory.getClusterConnection();
+        RedisClusterConnection conn = redisClusterConnection;
         Iterable<RedisClusterNode> nodes = conn.clusterGetNodes();
         long keysCount = conn.dbSize();
         HashMap<String, Object> infos = new HashMap<>();
@@ -52,14 +51,13 @@ public class RedisService {
     }
 
     public Long deleteKey(String key) {
-        RedisClusterConnection conn = jedisConnectionFactory.getClusterConnection();
+        RedisClusterConnection conn = redisClusterConnection;
         return conn.del(key.getBytes());
     }
 
     public HashMap<String, Properties> getNodeInfos() {
-        RedisClusterConnection conn = jedisConnectionFactory.getClusterConnection();
+        RedisClusterConnection conn = redisClusterConnection;
         Iterable<RedisClusterNode> nodes = conn.clusterGetNodes();
-        RedisClusterNode node = null;
         Properties info;
         HashMap<String, Properties> infos = new HashMap<>();
         for (RedisClusterNode n : nodes) {
